@@ -19,6 +19,8 @@ import Rooms from 'src/entity/Graph';
     </ul>
   </div>
     <button (click)="calculateMaxValue()">Calcular maior valor possível</button>
+    <br>
+    <button (click)="nextRoon()">Práxima sala</button>
     <hr>
     <div>
       <h2>Mochila</h2>
@@ -62,5 +64,12 @@ export class GameComponent {
     const capacity = 10; // Capacidade da mochila (ajuste conforme necessário)
  //   const maxValue = this.gameService.findMaxValueKnapsack(capacity);
   //  console.log('Maior valor possível:', maxValue);
+  //idSalaAtual, capacidadeMochila, mochila
+  }
+
+  nextRoon(){
+    console.log(this.rooms);
+    this.gameService.goToNextRoom();
+    this.rooms = this.gameService.getRooms();
   }
 }
