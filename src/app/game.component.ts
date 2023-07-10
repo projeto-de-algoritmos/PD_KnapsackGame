@@ -15,15 +15,25 @@ import Rooms from 'src/entity/Graph';
       <li *ngFor="let item of room.items">
         {{ item.name }} (Peso: {{ item.weight }}, Valor: {{ item.value }})
         <button (click)="takeItem(item)">Levar</button>
-        <button (click)="leaveItem(item)">Deixar</button>
       </li>
     </ul>
   </div>
     <button (click)="calculateMaxValue()">Calcular maior valor possível</button>
+    <hr>
+    <div>
+      <h2>Mochila</h2>
+      <ul>
+        <li *ngFor="let item of knapsack">
+        {{ item.name }} (Peso: {{ item.weight }}, Valor: {{ item.value }})
+        <button (click)="leaveItem(item)">Deixar</button>
+        </li>
+      </ul>
+    </div>
   `
 })
 export class GameComponent {
   rooms: Rooms[] = [];
+  knapsack: Items[] = []
 
   constructor(private gameService: GameService) {}
 
@@ -36,13 +46,15 @@ export class GameComponent {
     const nextRoom = this.rooms[1];
   
     currentRoom.items = currentRoom.items.filter((i) => i !== item);
-    nextRoom.items.push(item);
+    
+    this.knapsack.push(item);
   }
   
   leaveItem(item: Items) {
     const currentRoom = this.rooms[0];
   
-    currentRoom.items = currentRoom.items.filter((i) => i !== item);
+    currentRoom.items.push(item); //= currentRoom.items.filter((i) => i !== item);
+    this.knapsack = this.knapsack.filter((i) => i !== item);
   }
   
 
