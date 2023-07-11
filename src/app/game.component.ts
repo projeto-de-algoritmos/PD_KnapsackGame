@@ -8,10 +8,10 @@ import Rooms from 'src/entity/Graph';
 @Component({
   selector: 'app-game',
   template: `
-    <h1>Jogo da Mochila</h1>
+    <h1>Tente terminar o jogo com o máximo de moedas, sem ultrapassar 10kgs </h1>
     <div *ngFor="let room of rooms">
     <h2>{{ room.nomeSala }}</h2>
-    <ul style="list-style: none;">
+      <ul style="list-style: none;">
       <li *ngFor="let item of room.items">
         {{ item.name }} (Peso: {{ item.weight }}, Valor: {{ item.value }})
         <button (click)="takeItem(item)">Levar</button>
@@ -81,7 +81,7 @@ export class GameComponent {
     ListaItens.forEach(element => texto += element.name + ', ')
 
    // alert('Resultado Ótimo da Sala: '+ ValorMoeda + ListaItens);
-    alert('Resultado Ótimo da Sala: '+ ValorMoeda + ' ' + texto);
+    alert('Resultado Ótimo possível na sala: '+ ValorMoeda + ' moedas, pegando os itens: ' + texto);
 
     this.gameService.goToNextRoom();
     this.rooms = this.gameService.getRooms();

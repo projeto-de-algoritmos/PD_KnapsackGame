@@ -18,11 +18,13 @@ export class GameService {
     const roomA = new Rooms('Entrada do Castelo', [
       new Items('Moedas de ouro', 2, 10),
       new Items('Cálice ornamentado', 3, 5),
-      new Items('Colar de pérolas' , 5, 15)
+      new Items('Colar de pérolas' , 5, 15),
+      new Items('Escudo quebrado', 3, 4),
     ]);
-
+    
     const roomB = new Rooms('Salão de entrada', [
       new Items('Joia antiga', 1, 8),
+      new Items('Mapa da região', 2, 7),
       new Items('Gema brilhante', 4, 20)
     ]);
 
@@ -41,6 +43,7 @@ export class GameService {
         new Items('Joia antiga', 2, 15)
     ]);
 
+    
 
     // Adicione as salas à lista de salas do jogo
     this.rooms.push(roomA, roomB, roomC, roomD, roomE);
