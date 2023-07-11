@@ -62,8 +62,8 @@ export class GameComponent {
 
   calculateMaxValue() {
     const capacity = 10; // Capacidade da mochila (ajuste conforme necessário)
- //   const maxValue = this.gameService.findMaxValueKnapsack(capacity);
-  //  console.log('Maior valor possível:', maxValue);
+    const maxValue = this.gameService.findMaxValueKnapsack(this.gameService.getCurrentRoomIndex(), capacity,this.knapsack );
+    console.log('Resultado ótimo da Sala:', maxValue);
   //idSalaAtual, capacidadeMochila, mochila
   }
 

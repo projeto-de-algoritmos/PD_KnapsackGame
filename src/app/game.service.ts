@@ -35,7 +35,7 @@ export class GameService {
     this.rooms.push(roomA, roomB, roomC);
   }
 
-  findMaxValueKnapsack(currentRoomIndex: number, capacity: number, prevRoomItems: Items[] = []): number {
+  findMaxValueKnapsack(currentRoomIndex: number, capacity: number, prevRoomItems: Items[] = []) {
     if (currentRoomIndex < 0 ) {
       return 0;
     }
@@ -68,25 +68,23 @@ export class GameService {
         }
       }
     }
+    // Rastreie os itens selecionados
+    const selectedItems: Items[] = [];
+    let i = numItems;
+    let j = capacity;
+    while (i > 0 && j > 0) {
+      if (dp[i][j] !== dp[i - 1][j]) {
+        const selectedItem = availableItems[i - 1];
+        selectedItems.push(selectedItem);
+        j -= selectedItem.weight;
+      }
+      i--;
+    }
   
-    // Retorne o valor máximo encontrado
-    return dp[numItems][capacity];
-  }
-  
+    // Retorne o valor máximo e os itens selecionados
+    return { value: dp[numItems][capacity], selectedItems: selectedItems.reverse() };
+}
 
-  takeItem(item: Items) {
-    const currentRoom = this.rooms[0];
-    const nextRoom = this.rooms[1];
-  
-    currentRoom.items = currentRoom.items.filter((i) => i !== item);
-    nextRoom.items.push(item);
-  }
-  
-  leaveItem(item: Items) {
-    const currentRoom = this.rooms[0];
-  
-    currentRoom.items = currentRoom.items.filter((i) => i !== item);
-  }
 
   goToNextRoom(): boolean {
     const currentRoomIndex = this.currentRoomIndex;
@@ -101,4 +99,9 @@ export class GameService {
   getRooms(): Rooms[] {
     return [this.rooms[this.currentRoomIndex]];
   }
+
+  getCurrentRoomIndex(): number {
+    return this.currentRoomIndex;
+  }
+
 }
