@@ -22,10 +22,10 @@ O Objetivo desse trabalho é aplicar o Algoritmo Knapsack em um pequeno jogo de 
 
 ## Screenshots
 
-[](./src/images/print1.png)
-[](./src/images/print2.png)
-[](./src/images/print3.png)
-[](./src/images/print4.png)
+![img](./src/images/print1.png)
+![img](./src/images/print2.png)
+![img](./src/images/print3.png)
+![img](./src/images/print4.png)
 
 ## Instalação
 
