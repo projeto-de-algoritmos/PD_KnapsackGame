@@ -36,9 +36,7 @@ export class GameService {
   }
 
   findMaxValueKnapsack(currentRoomIndex: number, capacity: number, prevRoomItems: Items[] = []) {
-    if (currentRoomIndex < 0 ) {
-      return 0;
-    }
+
   
     const currentRoom = this.rooms[currentRoomIndex];
     const availableItems = currentRoom.items.concat(prevRoomItems);

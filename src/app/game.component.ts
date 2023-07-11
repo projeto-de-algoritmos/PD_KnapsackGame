@@ -18,8 +18,6 @@ import Rooms from 'src/entity/Graph';
       </li>
     </ul>
   </div>
-    <button (click)="calculateMaxValue()">Calcular maior valor possível</button>
-    <br>
     <button (click)="nextRoon()">Práxima sala</button>
     <hr>
     <div>
@@ -60,15 +58,27 @@ export class GameComponent {
   }
   
 
-  calculateMaxValue() {
-    const capacity = 10; // Capacidade da mochila (ajuste conforme necessário)
-    const maxValue = this.gameService.findMaxValueKnapsack(this.gameService.getCurrentRoomIndex(), capacity,this.knapsack );
-    console.log('Resultado ótimo da Sala:', maxValue);
-  //idSalaAtual, capacidadeMochila, mochila
-  }
 
   nextRoon(){
-    console.log(this.rooms);
+    const capacity = 10;
+    let PesoMochila = 0;
+    this.knapsack.forEach(element => PesoMochila += element.weight )
+    
+    if(PesoMochila > capacity){
+      alert('Capacidade da mochila excedida, tente deixar alguns itens');
+      return;
+    }
+
+    const maxValue = this.gameService.findMaxValueKnapsack(this.gameService.getCurrentRoomIndex(), capacity,this.knapsack );
+
+    const ValorMoeda = maxValue.value
+    const ListaItens = maxValue.selectedItems
+    let texto = ''
+    ListaItens.forEach(element => texto += element.name + ', ')
+
+   // alert('Resultado Ótimo da Sala: '+ ValorMoeda + ListaItens);
+    alert('Resultado Ótimo da Sala: '+ ValorMoeda + ' ' + texto);
+
     this.gameService.goToNextRoom();
     this.rooms = this.gameService.getRooms();
   }
