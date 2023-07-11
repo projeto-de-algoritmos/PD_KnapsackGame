@@ -15,24 +15,35 @@ export class GameService {
 
   constructor() {
     // Crie as salas e os itens do jogo aqui
-    const roomA = new Rooms('Sala A', [
-      new Items('Item 1', 2, 10),
-      new Items('Item 2', 3, 5),
-      new Items('Item 3', 5, 15)
+    const roomA = new Rooms('Entrada do Castelo', [
+      new Items('Moedas de ouro', 2, 10),
+      new Items('Cálice ornamentado', 3, 5),
+      new Items('Colar de pérolas' , 5, 15)
     ]);
 
-    const roomB = new Rooms('Sala B', [
-      new Items('Item 4', 1, 8),
-      new Items('Item 5', 4, 12)
+    const roomB = new Rooms('Salão de entrada', [
+      new Items('Joia antiga', 1, 8),
+      new Items('Gema brilhante', 4, 20)
     ]);
 
-    const roomC = new Rooms('Sala C', [
-      new Items('Item 6', 2, 6),
-      new Items('Item 7', 3, 18)
+    const roomC = new Rooms('Campo de treino', [
+      new Items('Adaga afiada', 2, 6),
+      new Items('Manto de veludo', 3, 18)
     ]);
+
+    const roomD = new Rooms('Biblioteca', [
+        new Items('Frasco de perfume', 2, 8),
+        new Items('Estandarte de família', 3, 12)
+    ]);
+
+    const roomE = new Rooms('Quarto do Rei', [
+        new Items('Relógio de bolso', 3, 9),
+        new Items('Joia antiga', 2, 15)
+    ]);
+
 
     // Adicione as salas à lista de salas do jogo
-    this.rooms.push(roomA, roomB, roomC);
+    this.rooms.push(roomA, roomB, roomC, roomD, roomE);
   }
 
   findMaxValueKnapsack(currentRoomIndex: number, capacity: number, prevRoomItems: Items[] = []) {
